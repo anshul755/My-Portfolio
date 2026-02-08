@@ -12,8 +12,8 @@ const PORT = parseInt(process.env.PORT, 10) || 8080;
 const PINECONE_INDEX = process.env.PINECONE_INDEX || 'portfolio-rag-768';
 
 const GENERATION_MODEL = 'gemini-2.5-flash';
-const EMBEDDING_MODEL = 'text-embedding-004';
-const EMBEDDING_DIMENSION = 768;
+const EMBEDDING_MODEL = 'models/gemini-embedding-001';
+const EMBEDDING_DIMENSION = 3072;
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const PINECONE_API_KEY = process.env.PINECONE_API_KEY;

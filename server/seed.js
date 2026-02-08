@@ -4,8 +4,8 @@ require("dotenv").config();
 
 const CONFIG = {
     pineconeIndex: process.env.PINECONE_INDEX || "portfolio-rag-768",
-    modelName: "text-embedding-004",
-    embeddingDim: 768,
+    modelName: "models/gemini-embedding-001",
+    embeddingDim: 3072,
 };
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -61,7 +61,7 @@ Soft Skills: Problem Solving, Team Collaboration.`,
         category: "Achievements",
         title: "Coding Achievements & Certifications",
         text: `Competitive Programming:
-- LeetCode: Solved 500+ questions. Max Rating: 1582.
+- LeetCode: Solved 600+ questions. Max Rating: 1639.
 - Codeforces: Max Rating 966.
 Certifications:
 - Google Developer Group Solution Challenge 2025.
