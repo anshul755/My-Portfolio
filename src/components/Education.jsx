@@ -34,12 +34,12 @@ export default function Education() {
     <section
       id="education"
       ref={ref}
-      className={`scroll-mt-20 w-full flex justify-center px-4 py-32 transition-all duration-700 ease-out ${revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      className={`scroll-mt-20 w-full flex justify-center px-4 py-32 transition-opacity duration-700 ease-out ${revealed ? "opacity-100" : "opacity-0"
         }`}
     >
       <div className="w-full max-w-7xl bg-black/30 backdrop-blur-md border border-white/20 rounded-3xl shadow-2xl overflow-hidden md:flex transform transition-transform duration-300 hover:scale-105">
 
-        <div className="relative w-full md:w-1/2 h-96 lg:h-[32rem]">
+        <div className="relative w-full md:w-1/2 h-72 sm:h-80 md:h-auto flex-shrink-0">
           {images.map((src, idx) => (
             <img
               key={idx}
@@ -52,9 +52,13 @@ export default function Education() {
         </div>
 
         <div className="flex-1 p-8 md:p-12 lg:p-16">
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-orange-400 mb-4">
+          <div className="mb-10">
+            <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-2">Education</h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full" />
+          </div>
+          <h3 className="text-2xl lg:text-3xl font-extrabold text-orange-400 mb-4">
             Computer Science Engineering
-          </h2>
+          </h3>
           <p className="text-xl text-white mb-6">
             <span className="font-semibold">Institute Of Technology,</span> Nirma University
           </p>

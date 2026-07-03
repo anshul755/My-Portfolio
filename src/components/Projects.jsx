@@ -1,24 +1,49 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useAnimation, useInView } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Github, Globe } from "lucide-react";
+
+import NA from "./images/NA.png";
+import predictive from "./images/RUL.png";
+import pagerank from "./images/PG.png";
+import LL from "./images/LL.png";
+import SM from "./images/SM.png";
+import LS from "./images/LS.png";
+import IN from "./images/IN.png";
+import EM from "./images/EM.svg";
 
 export default function Projects() {
   const projects = [
     {
-      name: "NeuralAgri",
-      logo: "https://www.dropbox.com/scl/fi/xlgyo976tdn8ion9gn21y/NA.png?rlkey=crwk9x8ud0fh2shvm1le7otmn&st=s6adz4uu&raw=1",
-      domain: "Full Stack | AI/ML | Android Development",
-      date: "March 2025",
-      summary: "AI-Powered Agricultural Advisory System",
+      name: "InternNova",
+      logo: IN,
+      domain: "Java | Spring Boot | FastAPI | Microservices",
+      date: "June 2026",
+      summary: "AI-Powered Microservices Recruitment Platform",
       description:
-        "Built a cross-platform farming assistant integrating ML models for crop yield prediction, disease detection, and personalized crop recommendations. Used React, Flask, TensorFlow, PyTorch, and Google Earth Engine to provide real-time insights, satellite-based soil moisture, and a Hindi-supported chatbot for small and marginal farmers.",
-      links: { code: "https://github.com/anshul755/NeuralAgri" },
+        "A full-stack microservices recruitment platform built using Spring Boot, FastAPI, MongoDB, and Docker. Designed and developed a scalable architecture consisting of five containerized services orchestrated with Docker Compose and deployed to DigitalOcean using GitHub Actions CI/CD. Developed the Core Service handling authentication, profile management, job board CRUD, application workflows, Cloudinary file uploads, SMTP email notifications, and CRON-based job scheduling. Integrated an AI-powered candidate evaluation pipeline using LangGraph and LangChain to analyze resumes, detect timeline anomalies, score candidates against job descriptions, and automatically generate tailored LaTeX-based PDF resumes.",
+      links: {
+        code: "https://github.com/anshul755/InternNova",
+        live: "https://intern-nova.in"
+      },
+    },
+    {
+      name: "EchoMatrix",
+      logo: EM,
+      domain: "React.js | FastAPI | Machine Learning",
+      date: "April 2026",
+      summary: "Investigative Intelligence & Semantic Analytics Platform",
+      description:
+        "A full-stack investigative intelligence platform designed for semantic search, temporal analysis, and graph-based data exploration. Built using React.js, FastAPI, pandas, scikit-learn, and SentenceTransformers. Implemented embedding-based semantic retrieval, topic clustering with KMeans, interactive dashboards for time-series analysis, network visualization, and community detection using NetworkX. Optimized analytics performance through backend dataset caching, embedding warm-up, and lazy-loaded frontend routes, enabling faster and more efficient investigative workflows.",
+      links: {
+        code: "https://github.com/anshul755/EchoMatrix",
+        live: "https://echo-matrix.vercel.app"
+      },
     },
     {
       name: "Predictive Maintenance Using Sensor Data",
-      logo: "https://www.dropbox.com/scl/fi/rmryglr1lth1b2jc6fuz8/Screenshot-2025-12-29-161103.png?rlkey=adp3jksgdbrk1brfqw6k0dsx2&st=nz8xen3o&raw=1",
+      logo: predictive,
       domain: "Python | Machine Learning",
-      date: "2024",
+      date: "November 2025",
       summary: "Machine Learning-Based RUL Prediction for NASA Turbofan Engines",
       description:
         "A machine learning project focused on predicting Remaining Useful Life (RUL) of NASA turbofan engines using sensor time-series data from the C-MAPSS dataset. The workflow includes data preprocessing, EDA, visualization, feature engineering, model training, and performance benchmarking across 7 regression models. Achieved best performance using XGBoost with RMSE 19.85 and R² 0.77, demonstrating its potential for real-world predictive maintenance applications.",
@@ -26,22 +51,22 @@ export default function Projects() {
     },
     {
       name: "PageRank Visualizer",
-      logo: "https://www.dropbox.com/scl/fi/q643687zdjptg05qzyevo/Screenshot-2025-12-29-160037.png?rlkey=6mfl24cf3aovqdb3vp77l7874&st=v2acvl1q&raw=1",
+      logo: pagerank,
       domain: "Java Spring Boot | React",
-      date: "2025",
+      date: "November 2025",
       summary: "Interactive Visualization Tool for Google's PageRank Algorithm",
       description:
         "An interactive web-based tool that visualizes how Google's PageRank algorithm works. Users can build directed graphs, run PageRank iterations, and observe how importance distributes across nodes in real-time. The app supports dynamic graph creation, damping factor control, result animation, and exposes an API for PageRank computation. Ideal for students and developers exploring graph theory, search ranking, and algorithm behavior.",
-      links: { 
+      links: {
         code: "https://github.com/anshul755/Page-Rank-Visualizer",
         live: "https://page-rank-visualizer.vercel.app/"
-       },
+      },
     },
     {
       name: "LuxeLodge",
-      logo: "https://www.dropbox.com/scl/fi/7lolkikgfu3o6scu8dzll/LuxeLodge.png?rlkey=uiyzn3dafsv0a9wkv2lmcmddv&st=4sw02m7f&raw=1",
+      logo: LL,
       domain: "Node.js | Express | MongoDB | EJS",
-      date: "April 2025",
+      date: "May 2025",
       summary: "Modern Lodge Management System",
       description:
         "Built a modern, full-stack lodge management system with secure user authentication, dynamic room listings, image uploads via Cloudinary, and a booking management dashboard. Server-rendered with EJS for smooth, SEO-friendly pages and Bootstrap for responsive design.",
@@ -51,8 +76,21 @@ export default function Projects() {
       },
     },
     {
+      name: "NeuralAgri",
+      logo: NA,
+      domain: "Full Stack | AI/ML | Android Development",
+      date: "March 2025",
+      summary: "AI-Powered Agricultural Advisory System",
+      description:
+        "Built a cross-platform farming assistant integrating ML models for crop yield prediction, disease detection, and personalized crop recommendations. Used React, Flask, TensorFlow, PyTorch, and Google Earth Engine to provide real-time insights, satellite-based soil moisture, and a Hindi-supported chatbot for small and marginal farmers.",
+      links: { 
+        code: "https://github.com/anshul755/NeuralAgri",
+        live: "https://neuralagri.web.app/"
+      },
+    },
+    {
       name: "SmartMusic",
-      logo: "https://www.dropbox.com/scl/fi/ag75ojz4aep6jtsqux3lf/SM.png?rlkey=830u06j78rs6scd4tstjxe0rn&st=o3lb3f58&raw=1",
+      logo: SM,
       domain: "Python AI-ML",
       date: "January 2025",
       summary: "Mood and Gesture Activated Smart Music System",
@@ -62,7 +100,7 @@ export default function Projects() {
     },
     {
       name: "Library System",
-      logo: "https://www.dropbox.com/scl/fi/52aqhx5s4nwbaozhmw743/LS.png?rlkey=hu8aoepf58tldfv5dwji066pn&st=otbtiaa4&raw=1",
+      logo: LS,
       domain: "Java",
       date: "October 2024",
       summary: "Java-Based Library Management System",
@@ -71,15 +109,41 @@ export default function Projects() {
       links: { code: "https://github.com/anshul755/LibrarySystem" },
     },
   ];
-
   const [openIndex, setOpenIndex] = useState(null);
   const [hoveredCard, setHoveredCard] = useState(null);
-  const controls = useAnimation();
+  const [startIndex, setStartIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  // Responsive items per page
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) setItemsPerPage(1);
+      else if (window.innerWidth < 1024) setItemsPerPage(2);
+      else setItemsPerPage(4);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const next = () => {
+    setDirection(1);
+    setStartIndex((prev) => (prev + 1) % projects.length);
   };
+
+  const prev = () => {
+    setDirection(-1);
+    setStartIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  const currentProjects = [];
+  for (let i = 0; i < itemsPerPage; i++) {
+    currentProjects.push({
+      ...projects[(startIndex + i) % projects.length],
+      actualIndex: (startIndex + i) % projects.length
+    });
+  }
 
   const handleMouseMove = (e, index) => {
     if (hoveredCard !== index) return;
@@ -93,6 +157,7 @@ export default function Projects() {
     const rotateY = (centerX - x) / 10;
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05,1.05,1.05)`;
   };
+
   const handleMouseLeave = (e) => {
     e.currentTarget.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale3d(1,1,1)";
     setHoveredCard(null);
@@ -100,86 +165,109 @@ export default function Projects() {
 
   return (
     <section id="project" className="scroll-mt-20 py-16 px-4 sm:px-6 lg:px-8 bg-transparent">
-      <h2 className="sr-only">Projects</h2>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((proj, idx) => {
-          const ref = useRef(null);
-          const inView = useInView(ref, { margin: "-100px" });
-
-          useEffect(() => {
-            controls.start(inView ? "visible" : "hidden");
-          }, [controls, inView]);
-
-          return (
-            <motion.div
-              key={proj.name}
-              ref={ref}
-              variants={cardVariants}
-              initial="hidden"
-              animate={controls}
-              className="relative"
+      <div className="max-w-[1400px] mx-auto">
+        <div className="bg-black/30 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl p-6 sm:p-8 md:p-12">
+          <div className="flex items-center justify-between mb-10">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-2">Projects</h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full" />
+          </div>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={prev}
+              className="w-12 h-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm flex items-center justify-center text-white hover:bg-orange-400 hover:text-black hover:border-orange-400 transition-all duration-300 hover:scale-110 z-10"
             >
-              <div
-                className="group relative bg-white/10 dark:bg-gray-900/10 backdrop-blur-lg rounded-2xl border border-white/20 shadow-lg overflow-hidden transition-all duration-500"
-                style={{ perspective: "1000px", transformStyle: "preserve-3d", transition: "transform 0.3s ease-out" }}
-                onMouseMove={(e) => handleMouseMove(e, idx)}
-                onMouseEnter={() => setHoveredCard(idx)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl" />
-                <div className="p-6 flex flex-col items-center text-center z-10 relative">
-                  <div className="relative mb-4 transition-transform duration-500 group-hover:scale-110">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full blur opacity-0 group-hover:opacity-30 transition-opacity duration-700" />
-                    <img src={proj.logo} alt={proj.name} className="h-16 w-16 object-contain relative z-10" />
+              <i className="fas fa-chevron-left" />
+            </button>
+            <button
+              onClick={next}
+              className="w-12 h-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm flex items-center justify-center text-white hover:bg-orange-400 hover:text-black hover:border-orange-400 transition-all duration-300 hover:scale-110 z-10"
+            >
+              <i className="fas fa-chevron-right" />
+            </button>
+          </div>
+        </div>
+
+        <div className="relative overflow-hidden w-full pb-10">
+          <div className="flex gap-6 w-full">
+            <AnimatePresence mode="popLayout" custom={direction}>
+              {currentProjects.map((proj) => (
+                <motion.div
+                  layout
+                  custom={direction}
+                  initial={(dir) => ({ opacity: 0, x: dir > 0 ? 200 : -200, scale: 0.8 })}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={(dir) => ({ opacity: 0, x: dir > 0 ? -200 : 200, scale: 0.8 })}
+                  transition={{ duration: 0.4 }}
+                  key={proj.name}
+                  className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-20px)] flex-shrink-0 relative"
+                >
+                  <div
+                    className="group relative bg-white/10 dark:bg-gray-900/10 backdrop-blur-lg rounded-2xl border border-white/20 shadow-lg overflow-hidden transition-all duration-500 h-[340px] flex flex-col justify-between"
+                    style={{ perspective: "1000px", transformStyle: "preserve-3d", transition: "transform 0.3s ease-out" }}
+                    onMouseMove={(e) => handleMouseMove(e, proj.name)}
+                    onMouseEnter={() => setHoveredCard(proj.name)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl pointer-events-none" />
+                    <div className="p-6 flex flex-col z-10 relative h-full">
+                      <div className="flex-1 flex flex-col items-center justify-start w-full pt-4">
+                        <div className="relative mb-6 transition-transform duration-500 group-hover:scale-110 flex items-center justify-center h-20 w-20 bg-white/5 rounded-2xl border border-white/10 p-3 shadow-inner">
+                          <div className="absolute -inset-2 bg-gradient-to-r from-orange-400 to-orange-600 rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-700" />
+                          <img src={proj.logo} alt={proj.name} loading="lazy" className="h-full w-full object-contain relative z-10 drop-shadow-md" />
+                        </div>
+                        <h3 className="text-lg sm:text-xl font-bold text-white mb-1 transition-transform duration-500 group-hover:scale-105 text-center">{proj.name}</h3>
+                        <p className="text-sm sm:text-base text-gray-300 text-center">{proj.domain}</p>
+                      </div>
+                      <div className="mt-auto flex space-x-3 w-full justify-center">
+                        <AnimatedButton href={proj.links.code} external icon={<Github className="w-4 h-4 mr-1" />} text="Code" color="orange" />
+                        {proj.links.live && <AnimatedButton href={proj.links.live} external icon={<Globe className="w-4 h-4 mr-1" />} text="Live" color="orange" />}
+                        <AnimatedButton onClick={() => setOpenIndex(proj.actualIndex)} text="Details" color="orange" />
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1 transition-transform duration-500 group-hover:scale-105">{proj.name}</h3>
-                  <p className="text-sm sm:text-base text-gray-300 mb-6">{proj.domain}</p>
-                  <div className="flex space-x-4">
-                    <AnimatedButton href={proj.links.code} external icon={<Github className="w-4 h-4 mr-1" />} text="Code" color="orange" />
-                    {proj.links.live && <AnimatedButton href={proj.links.live} external icon={<Globe className="w-4 h-4 mr-1" />} text="Live" color="orange" />}
-                    <AnimatedButton onClick={() => setOpenIndex(idx)} text="Details" color="orange" />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+          </div>
+        </div>
+        <AnimatePresence>
+          {openIndex !== null && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              style={{ perspective: "1000px" }}
+            >
+              <div className="absolute inset-0 bg-black/80" onClick={() => setOpenIndex(null)} />
+              <motion.div className="relative bg-black-700 backdrop-blur-lg rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto z-10 border border-white/20">
+                <button onClick={() => setOpenIndex(null)} className="absolute top-4 right-4 text-white text-2xl hover:text-orange-400">×</button>
+                <div className="flex items-center mb-4">
+                  <img src={projects[openIndex].logo} alt={projects[openIndex].name} loading="lazy" className="h-12 w-12 mr-4 object-contain" />
+                  <div>
+                    <h3 className="text-2xl font-bold text-orange-400">{projects[openIndex].name}</h3>
+                    <p className="text-sm text-gray-200">{projects[openIndex].domain} • {projects[openIndex].date}</p>
                   </div>
                 </div>
-              </div>
-              <AnimatePresence>
-                {openIndex === idx && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3 }}
-                    className="fixed inset-0 z-50 flex items-center justify-center p-4"
-                    style={{ perspective: "1000px" }}
-                  >
-                    <div className="absolute inset-0 bg-black/80" onClick={() => setOpenIndex(null)} />
-                    <motion.div className="relative bg-black-700 backdrop-blur-lg rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto z-10">
-                      <button onClick={() => setOpenIndex(null)} className="absolute top-4 right-4 text-white text-2xl hover:text-orange-400">×</button>
-                      <div className="flex items-center mb-4">
-                        <img src={proj.logo} alt={proj.name} className="h-12 w-12 mr-4 object-contain" />
-                        <div>
-                          <h3 className="text-2xl font-bold text-orange-400">{proj.name}</h3>
-                          <p className="text-sm text-gray-200">{proj.domain} • {proj.date}</p>
-                        </div>
-                      </div>
-                      <h4 className="text-lg font-semibold text-white mb-3">{proj.summary}</h4>
-                      <p className="text-base text-gray-300 mb-6 whitespace-pre-line">{proj.description}</p>
-                      <div className="flex space-x-4">
-                        <a href={proj.links.code} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 border border-orange-400 text-white hover:bg-orange-400 hover:text-black rounded-2xl">
-                          <Github className="w-5 h-5 mr-2" /> View Code
-                        </a>
-                        {proj.links.live && (
-                          <a href={proj.links.live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 border border-orange-400 text-white hover:bg-white hover:text-black rounded-2xl">
-                            <Globe className="w-5 h-5 mr-2" /> Live Site
-                          </a>
-                        )}
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                <h4 className="text-lg font-semibold text-white mb-3">{projects[openIndex].summary}</h4>
+                <p className="text-base text-gray-300 mb-6 whitespace-pre-line">{projects[openIndex].description}</p>
+                <div className="flex space-x-4">
+                  <a href={projects[openIndex].links.code} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 border border-orange-400 text-white hover:bg-orange-400 hover:text-black rounded-2xl">
+                    <Github className="w-5 h-5 mr-2" /> View Code
+                  </a>
+                  {projects[openIndex].links.live && (
+                    <a href={projects[openIndex].links.live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 border border-orange-400 text-white hover:bg-white hover:text-black rounded-2xl">
+                      <Globe className="w-5 h-5 mr-2" /> Live Site
+                    </a>
+                  )}
+                </div>
+              </motion.div>
             </motion.div>
-          );
-        })}
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
