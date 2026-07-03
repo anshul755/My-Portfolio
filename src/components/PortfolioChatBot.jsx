@@ -7,7 +7,7 @@ const PortfolioChatbot = () => {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hello! I'm **Portfolio Assistant**\n\nI can tell you about Anshul's **projects**, **tech stack**, or how to **get in touch**. How can I help?",
+      content: "Hello! I'm **Anshul's Portfolio Assistant**\n\nI can tell you about his **projects**, **tech stack**, or how to **get in touch**. How can I help?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -119,11 +119,12 @@ const PortfolioChatbot = () => {
   return (
     <>
       <button
+        aria-label={isOpen ? "Close chatbot" : "Open chatbot"}
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 group
           ${isOpen
-            ? "bg-neutral-900 border border-orange-500/50 rotate-90"
-            : "bg-black border border-orange-500 shadow-orange-500/20 hover:shadow-orange-500/40"
+            ? "bg-black/40 backdrop-blur-md border border-orange-400 rotate-90"
+            : "bg-black/40 backdrop-blur-md border border-orange-400 shadow-[0_0_15px_rgba(251,146,60,0.3)] hover:shadow-[0_0_25px_rgba(251,146,60,0.5)]"
           }`}
       >
         {isOpen ? (
@@ -135,12 +136,12 @@ const PortfolioChatbot = () => {
 
       {isOpen && (
         <div
-          className="fixed bottom-24 right-4 md:right-6 w-[90vw] md:w-[380px] h-[500px] max-h-[70vh] z-50 flex flex-col rounded-2xl overflow-hidden shadow-2xl border border-orange-500/30 bg-black/95 backdrop-blur-xl animate-in fade-in slide-in-from-bottom-4 duration-300"
+          className="fixed bottom-24 right-4 md:right-6 w-[90vw] md:w-[380px] h-[500px] max-h-[70vh] z-50 flex flex-col rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-black/40 backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-300"
         >
-          <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/50 border-b border-white/10">
+          <div className="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/10">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center">
-                <Terminal className="w-4 h-4 text-orange-500" />
+              <div className="h-10 sm:h-12 w-auto rounded-xl bg-white/5 border border-orange-400/50 shrink-0 shadow-sm flex items-center justify-center p-1">
+                <img src="/image.png" alt="Anshul Patel" className="h-full w-auto object-contain rounded-lg" />
               </div>
               <div>
                 <h3 className="text-sm font-bold text-white tracking-wide">Ask About Me</h3>
@@ -160,8 +161,8 @@ const PortfolioChatbot = () => {
                 <div
                   className={`max-w-[90%] px-4 py-3 text-sm leading-[1.6] shadow-sm
                     ${msg.role === "user"
-                      ? "bg-orange-600 text-white rounded-2xl rounded-tr-sm"
-                      : "bg-neutral-900 border border-white/10 text-neutral-200 rounded-2xl rounded-tl-sm"
+                      ? "bg-orange-400 text-black font-semibold rounded-2xl rounded-tr-sm shadow-md"
+                      : "bg-white/5 backdrop-blur-sm border border-white/10 text-gray-200 rounded-2xl rounded-tl-sm"
                     }`}
                 >
                   {msg.role === "assistant" ? (
@@ -186,9 +187,9 @@ const PortfolioChatbot = () => {
 
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-neutral-900 border border-white/10 px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-2">
-                  <Loader2 className="w-4 h-4 text-orange-500 animate-spin" />
-                  <span className="text-xs text-neutral-400 font-mono">Thinking...</span>
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-2">
+                  <Loader2 className="w-4 h-4 text-orange-400 animate-spin" />
+                  <span className="text-xs text-neutral-300 font-mono">Thinking...</span>
                 </div>
               </div>
             )}
@@ -242,7 +243,7 @@ const PortfolioChatbot = () => {
             </div>
           )}
 
-          <div className="p-4 bg-black border-t border-white/10">
+          <div className="p-4 bg-black/20 border-t border-white/10">
             <div className="relative flex items-center">
               <input
                 ref={inputRef}
@@ -252,12 +253,12 @@ const PortfolioChatbot = () => {
                 onKeyDown={handleKeyPress}
                 placeholder="Ask about my skills..."
                 disabled={isLoading}
-                className="w-full bg-neutral-900 text-white text-sm rounded-full pl-5 pr-12 py-3.5 border border-white/10 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 placeholder-neutral-500 transition-all"
+                className="w-full bg-white/5 backdrop-blur-sm text-white text-sm rounded-full pl-5 pr-12 py-3.5 border border-white/10 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400 placeholder-neutral-400 transition-all"
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
-                className="absolute right-2 p-2 bg-orange-600 hover:bg-orange-500 text-white rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-orange-500/20"
+                className="absolute right-2 p-2 bg-orange-400 hover:bg-orange-500 text-black rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
               >
                 <Send className="w-4 h-4" />
               </button>
