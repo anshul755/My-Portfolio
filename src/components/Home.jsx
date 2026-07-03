@@ -61,7 +61,7 @@ export default function Home() {
     "Tech Explorer  "
   ]);
 
-  const images = ["https://images.unsplash.com/photo-1672676434074-20ff3b80a9c0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "https://images.unsplash.com/photo-1605903211242-9821559b5b10?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"];
+  const images = ["https://images.unsplash.com/photo-1672676434074-20ff3b80a9c0?auto=format&fit=crop&q=70&w=1280", "https://images.unsplash.com/photo-1605903211242-9821559b5b10?auto=format&fit=crop&q=70&w=1280"];
   const [bgIndex, setBgIndex] = useState(0);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function Home() {
     <section
       id="home"
       ref={ref}
-      className={`scroll-mt-20 relative min-h-screen w-full flex flex-col items-center justify-center px-4 text-white text-center transition-all duration-700 ease-out overflow-hidden ${revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      className={`scroll-mt-20 relative min-h-screen w-full flex flex-col items-center justify-center px-4 text-white text-center transition-opacity duration-700 ease-out overflow-hidden ${revealed ? "opacity-100" : "opacity-0"
         }`}
       style={{
         backgroundImage: `url(${images[bgIndex]})`,
@@ -99,14 +99,24 @@ export default function Home() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
           <a
-            href="#project"
-            className="px-8 py-3 bg-orange-400 text-black font-semibold rounded-xl shadow-lg hover:bg-orange-500 hover:text-white transition"
+            href="/project"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('project')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              window.history.replaceState(null, '', '/project');
+            }}
+            className="flex items-center justify-center w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-orange-400 to-orange-500 text-black hover:text-white font-bold rounded-xl shadow-lg hover:shadow-orange-500/25 transition-all duration-300"
           >
             View Projects
           </a>
           <a
-            href="#contact"
-            className="flex items-center gap-2 px-8 py-3 border border-orange-400 text-orange-400 hover:text-white hover:bg-orange-500 hover:text-black font-semibold rounded-xl transition"
+            href="/contact"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              window.history.replaceState(null, '', '/contact');
+            }}
+            className="flex items-center justify-center w-full sm:w-auto gap-2 px-8 py-3 border border-orange-400 text-orange-400 hover:text-white font-semibold rounded-xl transition"
           >
             <Send className="w-5 h-5" />
             Get in Touch

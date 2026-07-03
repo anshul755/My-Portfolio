@@ -73,7 +73,7 @@ export default function Contact() {
       <section
         id="contact"
         ref={ref}
-        className={`scroll-mt-20 w-full flex items-center justify-center px-4 py-16 transition-all duration-700 ease-out ${revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        className={`scroll-mt-20 w-full flex items-center justify-center px-4 py-16 transition-opacity duration-700 ease-out ${revealed ? 'opacity-100' : 'opacity-0'}`}
       >
         <motion.div
           ref={containerRef}
@@ -83,9 +83,10 @@ export default function Contact() {
           className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 bg-black/30 backdrop-blur-md p-8 md:p-12 rounded-2xl shadow-2xl border border-white/20 text-white"
         >
           <div className="flex flex-col justify-center">
-            <h2 className="text-3xl font-bold text-orange-400 mb-4">
-              Let's Connect
-            </h2>
+            <div className="mb-6">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-2">Let's Connect</h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full" />
+            </div>
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label htmlFor="name" className="block mb-1 text-sm font-medium">
@@ -125,7 +126,7 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                className="px-6 py-2 bg-orange-400 text-black hover:text-white font-semibold rounded-lg shadow-md hover:bg-orange-500 transition"
+                className="w-full sm:w-auto px-6 py-2 bg-gradient-to-r from-orange-400 to-orange-500 text-black hover:text-white font-bold rounded-lg shadow-lg hover:shadow-orange-500/25 transition-all duration-300"
               >
                 Send Message
               </button>
@@ -170,6 +171,7 @@ export default function Contact() {
                   <img
                     src="https://cdn.iconscout.com/icon/free/png-256/free-leetcode-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-vol-4-pack-logos-icons-2944960.png"
                     alt="LeetCode"
+                    loading="lazy"
                     className="w-5 h-5"
                   />
                   LeetCode
@@ -183,6 +185,7 @@ export default function Contact() {
                   <img
                     src="https://cdn.iconscout.com/icon/free/png-256/free-code-forces-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-vol-2-pack-logos-icons-2944796.png?f=webp&w=256"
                     alt="Codeforces"
+                    loading="lazy"
                     className="w-5 h-5"
                   />
                   Codeforces

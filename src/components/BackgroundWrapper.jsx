@@ -41,7 +41,7 @@ export default function FireBackground({
 
     // Determine dynamic flake count for performance on small screens
     const isMobile = dimensions.width < 768;
-    const totalFlakes = isMobile ? Math.floor(flakeCount * 0.5) : flakeCount;
+    const totalFlakes = isMobile ? Math.min(25, Math.floor(flakeCount * 0.2)) : flakeCount;
 
     function init() {
       const W = canvas.width  = dimensions.width  * dpr;
@@ -89,10 +89,10 @@ export default function FireBackground({
     }
 
     function update(W, H) {
-      angle += 0.01;
+      angle += 0.005;
       for (let f of flakes) {
-        f.y += Math.cos(angle + f.d) + 1 + f.r / 2;
-        f.x += Math.sin(angle) * windIntensity;
+        f.y += (Math.cos(angle + f.d) + 1 + f.r / 2) * 0.3;
+        f.x += (Math.sin(angle) * windIntensity) * 0.3;
 
         if (f.y > H || f.x > W || f.x < 0) {
           if (Math.random() > 0.66) {

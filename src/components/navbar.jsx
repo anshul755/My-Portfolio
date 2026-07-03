@@ -3,18 +3,18 @@ import { useState, useEffect, useRef } from "react"
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [activeHash, setActiveHash] = useState(() => window.location.hash || '#home')
+  const [activeSection, setActiveSection] = useState('home')
   const menuRef = useRef(null)
   const buttonRef = useRef(null)
 
   const menuItems = [
-    { label: "Home", to: "#home" },
-    { label: "Education", to: "#education" },
-    { label: "Experience", to: "#experience" },
-    { label: "Skills", to: "#skills" },
-    { label: "Projects", to: "#project" },
-    { label: "About", to: "#about" },
-    { label: "Contact", to: "#contact" },
+    { label: "Home", to: "home" },
+    { label: "Education", to: "education" },
+    { label: "Experience", to: "experience" },
+    { label: "Skills", to: "skills" },
+    { label: "Projects", to: "project" },
+    { label: "About", to: "about" },
+    { label: "Contact", to: "contact" },
   ]
 
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev)
@@ -42,30 +42,31 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  // Update hash on URL change (clicks)
-  useEffect(() => {
-    const handleHashChange = () => {
-      setActiveHash(window.location.hash || '#home')
+  // Smooth scroll handler
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault()
+    const el = document.getElementById(sectionId)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      window.history.replaceState(null, '', `/${sectionId}`)
+      setActiveSection(sectionId)
     }
-    window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [])
+  }
 
-  // Scroll spy: update activeHash based on scroll position
+  // Scroll spy: update activeSection based on scroll position
   useEffect(() => {
-    const sections = menuItems.map(item => document.querySelector(item.to))
+    const sections = menuItems.map(item => document.getElementById(item.to))
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.6, // 60% of section visible
+      threshold: 0.6,
     }
 
     const observerCallback = (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          setActiveHash(`#${entry.target.id}`)
-          // Update URL hash without scrolling
-          window.history.replaceState(null, '', `#${entry.target.id}`)
+          setActiveSection(entry.target.id)
+          window.history.replaceState(null, '', `/${entry.target.id}`)
         }
       })
     }
@@ -89,7 +90,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center flex-shrink-0">
             <a
-              href="#home"
+              href="/home"
+              onClick={(e) => scrollToSection(e, 'home')}
               className="text-white text-xl lg:text-2xl font-semibold tracking-wide hover:text-orange-400 transition-colors duration-300"
             >
               Anshul Patel
@@ -109,16 +111,17 @@ export default function Navbar() {
                 {menuItems.map((item) => (
                   <li key={item.label}>
                     <a
-                      href={item.to}
+                      href={`/${item.to}`}
+                      onClick={(e) => scrollToSection(e, item.to)}
                       className={`relative text-base font-medium transition-all duration-300 py-2 px-3 rounded-lg group ${
-                        item.to === activeHash ? "text-orange-400" : "text-white hover:text-orange-400"
+                        item.to === activeSection ? "text-orange-400" : "text-white hover:text-orange-400"
                       }`}
                     >
                       <span className="relative z-10">{item.label}</span>
                       <span className="absolute inset-0 bg-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></span>
                       <span
                         className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-orange-400 transition-all duration-300 ${
-                          item.to === activeHash ? "w-full" : "w-0 group-hover:w-full"
+                          item.to === activeSection ? "w-full" : "w-0 group-hover:w-full"
                         }`}
                       ></span>
                     </a>
@@ -164,10 +167,10 @@ export default function Navbar() {
           {menuItems.map((item) => (
             <a
               key={item.label}
-              href={item.to}
-              onClick={() => setMobileMenuOpen(false)}
+              href={`/${item.to}`}
+              onClick={(e) => { scrollToSection(e, item.to); setMobileMenuOpen(false); }}
               className={`block text-lg font-medium py-3 px-4 rounded-lg transition-all duration-300 ${
-                item.to === activeHash
+                item.to === activeSection
                   ? "text-orange-400 bg-orange-500/10"
                   : "text-white hover:text-orange-400 hover:bg-orange-500/10"
               }`}
