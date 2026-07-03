@@ -3,7 +3,7 @@ const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs').promises;
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const { Pinecone, ServerlessSpec } = require('@pinecone-database/pinecone');
+const { Pinecone } = require('@pinecone-database/pinecone');
 const pdf = require('pdf-parse');
 require('dotenv').config();
 
@@ -67,10 +67,9 @@ async function ensurePineconeIndex() {
             name: PINECONE_INDEX,
             dimension: EMBEDDING_DIMENSION,
             metric: 'cosine',
-            spec: new ServerlessSpec({
-                cloud: "aws",
-                region: "us-east-1",
-            }),
+            spec: {
+                serverless: { cloud: "aws", region: "us-east-1" },
+            },
         });
         console.log('Index creation requested. Waiting 30s for index readiness...');
         await new Promise(r => setTimeout(r, 30000));
@@ -169,7 +168,7 @@ app.post('/query', async (req, res) => {
 
         const prompt = `You are Anshul Patel's AI Portfolio Assistant. 
         
-Your role is to answer questions about Anshul's skills, projects (PageRank, LuxeLodge, etc.), education, and experience based ONLY on the provided context.
+Your role is to answer questions about Anshul's skills, projects (InternNova, EchoMatrix, PageRank, LuxeLodge, NeuralAgri, SmartMusic, etc.), education, and experience (BinaryBits.co SWE Intern, TechSaksham AI Intern) based ONLY on the provided context.
 
 CONTEXT:
 ${contextText}
